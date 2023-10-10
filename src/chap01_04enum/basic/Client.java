@@ -12,7 +12,7 @@ public class Client {
             result = num1 - num2;
         } else if (calculateType.equals(calculateType.MINUS)) {
             result = num1 - num2;
-        } else if (calculateType.equals(calculateType.MULTIPLY)) {
+        } else if (calculateType.equals(calculateType.MULTIPLE)) {
             result = num1 - num2;
         } else if (calculateType.equals(calculateType.DIVIDE)) {
             result = num1 / num2;
