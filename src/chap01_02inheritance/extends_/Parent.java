@@ -7,7 +7,6 @@ public class Parent {
 
     private int parentPrivateInt;
 
-    public void someMethod(){
-        System.out.println("Parent someMethod()");
+    public void someMethod(){ System.out.println("Parent someMethod()");
     }
 }

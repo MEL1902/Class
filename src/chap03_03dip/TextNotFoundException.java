@@ -1,2 +1,4 @@
-package chap03_03dip;public class TextNotFoundException {
+package chap03_03dip;
+
+public class TextNotFoundException extends RuntimeException{
 }
