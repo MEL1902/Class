@@ -2,7 +2,7 @@ server:
   port: 8000
 spring:
   application:
-    name: apigateway-server
+    name: APIGATEWAY-SERVER
   cloud:
     gateway:
       default-filters:
@@ -13,17 +13,27 @@ spring:
             post: true
       routes: #개별 마이크로 서비스 정보를 route에 기입함
         - id: first-service
-          uri: http://localhost:8001/
+          uri: lb://FIRST-SERVICE
           predicates:
             - Path=/first-service/**   #여기로 들어오면 uri 로 보내주겠다
           filters:
 #            - AddRequestHeader=fsregh,fsreqhvyml   #first-request-header-yml
 #            - AddResponseHeader=fsreshyml,fsreshvyml  #first-response-header-yml
             - CustomFilter
+            - LogFilter
 
         - id: second-service
-          uri: http://localhost:8002/
+          uri: lb://SECOND-SERVICE
           predicates:
             - Path=/second-service/**   #여기로 들어오면 uri 로 보내주겠다
 
 # 호출 우선순위 글로벌 pre > 커스텀 pre > 커스텀 post > 글로벌 post
+
+eureka:
+  instance:
+    instance-id: ${spring.application.name}:${spring.application.instance_id:${random.value}}
+  client:
+    register-with-eureka: true #??? ??? ????
+    fetch-registry: true #??? ???? ?? ?? ??? ??
+    service-url:
+      defaultZone: http://127.0.0.1:8761/eureka # ??? ??? ??
