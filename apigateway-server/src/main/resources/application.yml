@@ -27,6 +27,16 @@ spring:
           predicates:
             - Path=/second-service/**   #여기로 들어오면 uri 로 보내주겠다
 
+        - id: user-service
+          uri: lb://USER-SERVICE
+          predicates:
+            - Path=/user-service/**   #여기로 들어오면 uri 로 보내주겠다
+                
+        - id: item-service
+          uri: lb://ITEM-SERVICE
+          predicates:
+            - Path=/item-service/**   #여기로 들어오면 uri 로 보내주겠다
+
 # 호출 우선순위 글로벌 pre > 커스텀 pre > 커스텀 post > 글로벌 post
 
 eureka:
@@ -36,4 +46,4 @@ eureka:
     register-with-eureka: true #??? ??? ????
     fetch-registry: true #??? ???? ?? ?? ??? ??
     service-url:
-      defaultZone: http://127.0.0.1:8761/eureka # ??? ??? ??
+      defaultZone: http://192.168.0.138:8761/eureka # ??? ??? ??

@@ -2,6 +2,7 @@ package com.example.userservice.dto;
 import com.example.userservice.domain.User;
 import jakarta.validation.constraints.*;
 import lombok.*;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 import java.time.LocalDateTime;
 import java.util.UUID;
@@ -10,6 +11,8 @@ import java.util.UUID;
 @AllArgsConstructor @Builder @ToString
 
 public class RequestCreateUserDto {
+
+
 
     @Email
     private String email;
@@ -27,14 +30,17 @@ public class RequestCreateUserDto {
     private String userId;
 
     public User toEntity() {
+
+        BCryptPasswordEncoder bCryptPasswordEncoder = new BCryptPasswordEncoder();
+//        bCryptPasswordEncoder.matches()
         return User.builder()
                 .email(this.email)
-                .encPw(this.pw)
+                .encPw(bCryptPasswordEncoder.encode(this.pw))
                 .name(this.name)
                 .userId(this.userId)
                 .uuid(UUID.randomUUID().toString())
                 .createAt(LocalDateTime.now())
                 .build();
-
     }
+
 }
