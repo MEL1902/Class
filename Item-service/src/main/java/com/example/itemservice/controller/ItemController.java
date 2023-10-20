@@ -4,6 +4,7 @@ import com.example.itemservice.dto.RequestCreateItemDto;
 import com.example.itemservice.service.ItemService;
 import lombok.RequiredArgsConstructor;
 
+import org.springframework.core.env.Environment;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -13,21 +14,33 @@ import org.springframework.web.bind.annotation.*;
 @RequiredArgsConstructor
 public class ItemController {
 
+    private final Environment env;
+
     private final ItemService itemService;
+
     @GetMapping("health-check")
-    public String healthCheck() {return "server is available!";}
+    public String healthCheck() {
+        return "server is available!";
+    }
 
 
     @PostMapping("items")
-    public ResponseEntity<?> createItem(@RequestBody RequestCreateItemDto requestCreateItemDto){
+    public ResponseEntity<?> createItem(@RequestBody RequestCreateItemDto requestCreateItemDto) {
         itemService.createItem(requestCreateItemDto);
         return new ResponseEntity(HttpStatus.CREATED);
-    }
 
+
+    }
+    @GetMapping("profile-check")
+    public String profileCheck() {
+        return env.getProperty("pro-file");
+
+    }
+}
 //
 //    @PostMapping("items")
 //    public ResponseEntity<?> createItem(@valid @RequestBody RequestCreateItemDto itemDto){
 //        itemService.createItem(itemDto);
 //        return new ResponseEntity(HttpStatus.CREATED);
 //    }
-}
+

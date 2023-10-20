@@ -1,16 +1,16 @@
 server:
   port: 0
-
+#MySQL
 spring:
   profiles:
     active: db
   application:
-    name: item-service
+    name: ITEM-SERVICE
   datasource:
-    url: ${url}
-    username: ${username_}
-    password: ${password_}
-    driver-class-name: ${driver-class-name}
+#    url: ${url}
+#    username: ${username_}
+#    password: ${password_}
+#    driver-class-name: ${driver-class-name}
   jpa:
     hibernate:
       ddl-auto: update
@@ -18,6 +18,8 @@ spring:
       hibernate:
         format_sql: true
     show-sql: true
+profiles:
+  active: pro
 
 eureka:
   instance:
@@ -27,6 +29,3 @@ eureka:
     fetch-registry: true #??? ???? ?? ?? ??? ??
     service-url:
       defaultZone: http://192.168.0.138:8761/eureka # ??? ??? ??
-
-
-#MySQL ????

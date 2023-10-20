@@ -23,6 +23,9 @@ public class FirstserviceController {
 
     @GetMapping("port-check")
     public String portCheck(){
-        return env.getProperty("local.server.port");
+        return env.getProperty("local.server.port")
+                + "/"
+                + env.getProperty("test.value");
     }
+
 }
