@@ -32,9 +32,19 @@ public class UserController {
 
     @GetMapping("users/{uuid}")
     public ResponseEntity<?> findUserByUuid(String uuid){
-        ResponseFindUserDto user = userService.findUserByUuid(uuid);
-        return ResponseEntity.ok(user);
+        ResponseFindUserDto userDto = userService.findUserByUuid(uuid);
+        return ResponseEntity.ok(userDto);
     }
+
+    @GetMapping("/users/all")
+    public ResponseEntity<?> findAllUser() { return ResponseEntity.ok(userService.findAllUSer());}
+
+    @GetMapping("users/{userId}/orders")
+    public ResponseEntity<?> findOrdersByUserId(@PathVariable String userId){
+        ResponseFindUserDto userDto = userService.findUserOrderList(userId);
+        return ResponseEntity.ok(userDto);
+    }
+
 
 //    @GetMapping("/users/all")
 //

@@ -1,6 +1,7 @@
 package com.example.itemservice.controller;
 
 import com.example.itemservice.dto.RequestCreateItemDto;
+import com.example.itemservice.dto.ResponseOrderByItemDto;
 import com.example.itemservice.service.ItemService;
 import lombok.RequiredArgsConstructor;
 
@@ -35,6 +36,11 @@ public class ItemController {
     public String profileCheck() {
         return env.getProperty("pro-file");
 
+    }
+    @GetMapping("items/{productId}/orders")
+    public ResponseEntity<?> getOrderByProductId(@PathVariable String productId){
+       ResponseOrderByItemDto dto = itemService.findOrderByItem(productId);
+               return ResponseEntity.ok(dto);
     }
 }
 //

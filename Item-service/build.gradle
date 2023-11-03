@@ -39,6 +39,8 @@ dependencies {
     implementation group: 'org.springframework.cloud', name: 'spring-cloud-starter-config', version: '4.0.4'
     implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
     implementation 'mysql:mysql-connector-java:8.0.27'  // 사용 중인 MySQL 버전에 따라 버전을 조정하세요.
+    implementation 'org.springframework.cloud:spring-cloud-starter-openfeign'
+
     // 기타 의존성들
 
 }
